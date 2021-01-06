@@ -125,3 +125,54 @@ function GenerateQuadsBalls(atlas)
 
     return quads
 end
+
+function GenerateQuadsBlockedBrick(atlas)
+    return table.slice(GenerateQuads(atlas, 32, 16), 24, 25)
+end
+
+function GenerateQuadsPowerUp(atlas)
+    return table.slice(GenerateQuads(atlas, 16, 16), 153,154)
+end
+
+function addBall(firstBall)
+    local ball = Ball()
+
+    ball.skin = math.random(7)
+    ball.x = firstBall.x
+    ball.y = firstBall.y
+    ball.dx = math.random(-200, 200)
+    ball.dy = math.random(-50, -60)
+
+    return ball
+end
+
+
+function addKey()
+    local powerup = PowerUp()
+    powerup.type = 'key'
+    powerup:setSkin()
+    return powerup
+end
+
+function spawnBallPowerup()
+    local powerup = PowerUp()
+    powerup.type = 'ball'
+    powerup:setSkin()
+    return powerup
+end
+
+function spawnKeyPowerup()
+    local powerup = PowerUp()
+    powerup.type = 'key'
+    powerup:setSkin()
+    return powerup
+end
+
+function lockedBrickExists(bricks)
+    for b, brick in pairs(bricks) do
+        if bricks[b].locked == true then
+            return true
+        end
+    end
+    return false
+end
