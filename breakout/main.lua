@@ -1,4 +1,4 @@
---[[
+ --[[
     GD50
     Breakout Remake
 
@@ -56,7 +56,8 @@ function love.load()
         ['main'] = love.graphics.newImage('graphics/breakout.png'),
         ['arrows'] = love.graphics.newImage('graphics/arrows.png'),
         ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
-        ['particle'] = love.graphics.newImage('graphics/particle.png')
+        ['particle'] = love.graphics.newImage('graphics/particle.png'),
+        ['key'] = love.graphics.newImage('graphics/key.png')
     }
 
     -- Quads we will generate for all of our textures; Quads allow us
@@ -66,7 +67,9 @@ function love.load()
         ['paddles'] = GenerateQuadsPaddles(gTextures['main']),
         ['balls'] = GenerateQuadsBalls(gTextures['main']),
         ['bricks'] = GenerateQuadsBricks(gTextures['main']),
-        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9)
+        ['hearts'] = GenerateQuads(gTextures['hearts'], 10, 9),
+        ['powerup'] = GenerateQuadsPowerUp(gTextures['main']),
+        ['lockedBrick'] = GenerateQuadsBlockedBrick(gTextures['main'])
     }
     
     -- initialize our virtual resolution, which will be rendered within our
@@ -283,9 +286,22 @@ function renderHealth(health)
     end
 end
 
+function renderKeys(keys)
+    --
+    local keyX = VIRTUAL_WIDTH - 140
+    local keyHeight = gTextures['key']:getHeight()
+    local keyWidth = gTextures['key']:getWidth()
+    --
+    for i = 1, keys do
+        love.graphics.draw(gTextures['key'], keyX, 4 )
+        keyX = keyX + 11
+    end
+end
+
 --[[
     Renders the current FPS.
 ]]
+
 function displayFPS()
     -- simple FPS display across all states
     love.graphics.setFont(gFonts['small'])
