@@ -24,7 +24,7 @@ end
 function PowerUp:collides(target)
 	--
 	--
-	if self.x > target.x + target.width or target.y > self.y + self.width then
+	if self.x > target.x + target.width or target.x > self.x + self.width then
 		return false
 	end
 
