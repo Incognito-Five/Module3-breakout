@@ -48,8 +48,8 @@ function PlayState:enter(params)
 
 
     -- give ball random starting velocity
-    self.ball.dx = math.random(-200, 200)
-    self.ball.dy = math.random(-50, -60)
+    self.balls[1].dx = math.random(-200, 200)
+    self.balls[1].dy = math.random(-50, -60)
 end
 
 function PlayState:update(dt)
@@ -119,7 +119,7 @@ function PlayState:update(dt)
 
         for b, ball in pairs(self.balls) do
             -- only check collision if we're in play
-            if brick.inPlay and self.ball:collides(brick) then
+            if brick.inPlay and self.balls[b]:collides(brick) then
 
 
                 if brick.locked == false then
