@@ -52,7 +52,7 @@ function love.load()
 
     -- load up the graphics we'll be using throughout our states
     gTextures = {
-        ['background'] = love.graphics.newImage('graphics/background.png'),
+        ['background'] = love.graphics.newImage('graphics/background.jpg'),
         ['main'] = love.graphics.newImage('graphics/breakout.png'),
         ['arrows'] = love.graphics.newImage('graphics/arrows.png'),
         ['hearts'] = love.graphics.newImage('graphics/hearts.png'),
